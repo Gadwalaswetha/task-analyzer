@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Smart Task Analyzer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Task Analyzer</h1>
+    <div class="main-grid">
+      <div class="left">
+        <section class="panel">
+          <h2>Add a Task</h2>
+          <label>Title <input id="t_title" type="text" placeholder="Fix login bug"></label>
+          <label>Due date <input id="t_due" type="date"></label>
+          <label>Estimated hours <input id="t_hours" type="number" min="0.1" step="0.5" value="2"></label>
+          <label>Importance (1-10) <input id="t_imp" type="number" min="1" max="10" value="5"></label>
+          <label>Dependencies (comma separated IDs) <input id="t_deps" type="text" placeholder="task-2, task-3"></label>
+          <div class="row">
+            <button id="addTask">Add Task</button>
+            <button id="clearTasks" class="danger">Clear</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Bulk JSON</h2>
+          <textarea id="bulk" rows="6" placeholder='[{"id":"a","title":"T1","due_date":"2025-11-30","estimated_hours":2,"importance":8}]'></textarea>
+          <div class="row">
+            <button id="loadBulk">Load Bulk JSON</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Analyze</h2>
+          <label>Strategy
+            <select id="strategy">
+              <option value="smart">Smart Balance</option>
+              <option value="fastest">Fastest Wins</option>
+              <option value="impact">High Impact</option>
+              <option value="deadline">Deadline Driven</option>
+            </select>
+          </label>
+          <div class="row">
+            <button id="analyzeBtn">Analyze Tasks</button>
+            <button id="suggestBtn" class="secondary">Suggest Top 3</button>
+            <span id="loading" class="loading"></span>
+          </div>
+        </section>
+      </div>
+
+      <div class="right">
+        <section class="panel">
+          <h2>Tasks (local)</h2>
+          <div id="taskList"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Results</h2>
+          <div id="results"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Raw JSON</h2>
+          <pre id="rawjson">[]</pre>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
